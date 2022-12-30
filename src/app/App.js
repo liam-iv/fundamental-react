@@ -3,6 +3,8 @@ import {PostItem} from "../components/Post";
 
 import './styles/index.css';
 import {PostList} from "../components/PostList";
+import MyInput from "../components/UI/input/MyInput";
+import MyButton from "../components/UI/button/MyButton";
 
 const App = () => {
 const [posts, setPosts] = useState([
@@ -13,6 +15,9 @@ const [posts, setPosts] = useState([
 ]);
     return (
         <div className='App' >
+            <MyInput type='text' placeholder='Post name'/>
+            <MyInput type='text' placeholder="Post description"/>
+            <MyButton>Add</MyButton>
             <PostList posts={posts} title="Post's List"/>
         </div>
     );

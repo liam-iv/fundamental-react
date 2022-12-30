@@ -1,9 +1,9 @@
 import React from 'react';
 
 import './PostItem.css'
+import MyButton from "../../UI/button/MyButton";
 
 export const PostItem = (props) => {
-    console.log(props)
     return (
         <div className='post'>
             <div className='post__content'>
@@ -13,7 +13,7 @@ export const PostItem = (props) => {
                 </div>
             </div>
                 <div className='wrapper__button'>
-                    <button className='delete__button'>Delete</button>
+                    <MyButton>Delete</MyButton>
                 </div>
         </div>
     );
