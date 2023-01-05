@@ -1,24 +1,27 @@
 import React, {useState} from 'react';
-import {PostItem} from "../components/Post";
 
 import './styles/index.css';
 import {PostList} from "../components/PostList";
-import MyInput from "../components/UI/input/MyInput";
-import MyButton from "../components/UI/button/MyButton";
+import {PostForm} from "../components/PostForm";
 
 const App = () => {
-const [posts, setPosts] = useState([
-    {id: 1, title: 'JavaScript', body: 'Description'},
-    {id: 2, title: 'Golang', body: 'Description'},
-    {id: 3, title: 'Java', body: 'Description'},
-    {id: 4, title: 'TypeScript', body: 'Description'},
-]);
+    const [posts, setPosts] = useState([
+        {id: 1, title: 'JavaScript', description: 'Description'},
+        {id: 2, title: 'Golang', description: 'Description'},
+        {id: 3, title: 'Java', description: 'Description'},
+        {id: 4, title: 'TypeScript', description: 'Description'},
+    ]);
+    const createPost = (newPost) => {
+        setPosts([...posts, newPost])
+    }
+    const removePost = (post) => {
+        setPosts(posts.filter(p => p.id !== post.id))
+    }
+
     return (
         <div className='App' >
-            <MyInput type='text' placeholder='Post name'/>
-            <MyInput type='text' placeholder="Post description"/>
-            <MyButton>Add</MyButton>
-            <PostList posts={posts} title="Post's List"/>
+            <PostForm create={createPost}/>
+            <PostList remove={removePost} posts={posts} title="Post's List"/>
         </div>
     );
 };

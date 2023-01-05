@@ -7,13 +7,13 @@ export const PostItem = (props) => {
     return (
         <div className='post'>
             <div className='post__content'>
-                <strong>{props.item.id}. {props.item.title}</strong>
+                <strong>{props.number}. {props.post.title}</strong>
                 <div className='post__description'>
-                    {props.item.body}
+                    {props.post.description}
                 </div>
             </div>
                 <div className='wrapper__button'>
-                    <MyButton>Delete</MyButton>
+                    <MyButton onClick={() => props.remove(props.post)}>Delete</MyButton>
                 </div>
         </div>
     );
