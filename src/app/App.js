@@ -7,11 +7,11 @@ import {PostFilter} from "../components/PostFilter";
 import {MyModal} from "../components/UI/modal/MyModal";
 import MyButton from "../components/UI/button/MyButton";
 import {usePosts} from "../hooks/usePosts";
+import axios from "axios";
 
 const App = () => {
     const [posts, setPosts] = useState([
-        {id: 1, title: 'JavaScript', description: '1Description'},
-        {id: 2, title: 'Golang', description: '3Description'},
+        {id: 1, title: 'Java', body:' language'}
     ]);
 
     const [filter, setFilter] = useState({sort: '', query: ''});
@@ -22,12 +22,18 @@ const App = () => {
         setPosts([...posts, newPost]);
         setModal(false)
     }
+
+    async function fetchPosts(sort) {
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+        setPosts(response.data)
+    }
     const removePost = (post) => {
         setPosts(posts.filter(p => p.id !== post.id));
     }
 
     return (
         <div className='App'>
+            <button onClick={fetchPosts}>Get Posts</button>
             <MyButton style={{marginTop: '30px'}} onClick={() => setModal(true)}>
                 Создать пользователя
             </MyButton>

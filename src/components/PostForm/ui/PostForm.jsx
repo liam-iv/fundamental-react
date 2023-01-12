@@ -3,14 +3,14 @@ import MyInput from "../../UI/input/MyInput";
 import MyButton from "../../UI/button/MyButton";
 
 export const PostForm = ({create}) => {
-    const [post, setPost] = useState({title: '', description: ''})
+    const [post, setPost] = useState({title: '', body: ''})
     const addNewPost = (e) => {
         e.preventDefault();
         const newPost = {
             ...post, id: Date.now()
         };
         create(newPost);
-        setPost({title: '', description: ''});
+        setPost({title: '', body: ''});
     };
 
     return (
@@ -19,15 +19,15 @@ export const PostForm = ({create}) => {
                 value={post.title}
                 onChange={e => setPost({...post, title: e.target.value})}
                 type='text'
-                placeholder='Post name'
+                placeholder='Добавить имя...'
             />
             <MyInput
-                value={post.description}
-                onChange={e => setPost({...post, description: e.target.value})}
+                value={post.body}
+                onChange={e => setPost({...post, body: e.target.value})}
                 type='text'
-                placeholder="Post description"
+                placeholder="Добавить описание..."
             />
-            <MyButton onClick={addNewPost}>Add</MyButton>
+            <MyButton onClick={addNewPost}>Добавить</MyButton>
         </form>
     );
 };
