@@ -8,6 +8,7 @@ import {MyModal} from "../components/UI/modal/MyModal";
 import MyButton from "../components/UI/button/MyButton";
 import {usePosts} from "../hooks/usePosts";
 import axios from "axios";
+import PostService from "../API/PostService";
 
 const App = () => {
     const [posts, setPosts] = useState([
@@ -24,8 +25,8 @@ const App = () => {
     }
 
     async function fetchPosts(sort) {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-        setPosts(response.data)
+        const posts = await PostService.getAll()
+        setPosts(posts )
     }
     const removePost = (post) => {
         setPosts(posts.filter(p => p.id !== post.id));
