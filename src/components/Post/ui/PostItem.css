@@ -8,6 +8,7 @@
 }
 
 .delete__button {
-    padding: 5px 15px;
+    display: flex;
+    padding: 2px 2px;
     cursor: pointer;
 }
