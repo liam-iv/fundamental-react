@@ -4,6 +4,7 @@ import PostService from "../API/PostService";
 
 const AboutPost = () => {
     const [post, setPost] = useState({});
+    const [comments, setComments] = useState([]);
     const [isPostLoading, setIsPostLoading] = useState(false);
 
     const params = useParams();
@@ -13,12 +14,16 @@ const AboutPost = () => {
         setIsPostLoading(true);
         const response = await PostService.getById(id)
         setPost(response.data)
-        console.log(response.data)
         setIsPostLoading(false);
+    }
+    async function fetchComments(id) {
+        const response = await PostService.getCommentsByPostId(id)
+        setComments(response.data)
     }
 
     useEffect(() => {
         fetchPostById(params.id)
+        fetchComments(params.id)
     }, [])
 
     return (
@@ -29,8 +34,14 @@ const AboutPost = () => {
                 <div>
                     <h1>Страница {params.id} поста</h1>
                     <div>{post.id}. {post.title}</div>
+                     <h2>Комментарии:</h2>
+            {comments.map(item =>
+                <div style={{marginTop: '15px'}}>
+                    <h5>{item?.email}</h5>
+                    <div>{item?.body}</div>
                 </div>
-
+            )}
+                </div>
             }
         </div>
     )
