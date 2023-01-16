@@ -36,7 +36,7 @@ const AboutPost = () => {
                     <div>{post.id}. {post.title}</div>
                      <h2>Комментарии:</h2>
             {comments.map(item =>
-                <div style={{marginTop: '15px'}}>
+                <div key={item.id} style={{marginTop: '15px'}}>
                     <h5>{item?.email}</h5>
                     <div>{item?.body}</div>
                 </div>
